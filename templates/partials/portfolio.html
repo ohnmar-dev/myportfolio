@@ -9,22 +9,27 @@
       <div class="col-12 text-center mb-2">
         <ul class="list-inline mb-4" id="portfolio-flters">
           <li class="btn btn-sm btn-outline-primary m-1 active" data-filter="*">All</li>
-          <li class="btn btn-sm btn-outline-primary m-1" data-filter=".first">Design</li>
-          <li class="btn btn-sm btn-outline-primary m-1" data-filter=".second">Development</li>
-          <li class="btn btn-sm btn-outline-primary m-1" data-filter=".third">Marketing</li>
+          {% comment %} <li class="btn btn-sm btn-outline-primary m-1" data-filter=".first">Design</li>
+          <li class="btn btn-sm btn-outline-primary m-1" data-filter=".second">Development</li> {% endcomment %}
+          {% for album in albums %}
+          <li class="btn btn-sm btn-outline-primary m-1" data-filter=".{{album.name}}">{{album.name}}</li>
+          
+          {% endfor %}
         </ul>
       </div>
     </div>
     <div class="row portfolio-container">
-      <div class="col-lg-4 col-md-6 mb-4 portfolio-item first">
+      {% for photo in photos %}
+      <div class="col-lg-4 col-md-6 mb-4 portfolio-item {{photo.album}}">
         <div class="position-relative overflow-hidden mb-2">
-          <img class="img-fluid rounded w-100" src="{% static 'assets/img/portfolio-1.jpg' %}" alt="" />
+          <img class="img-fluid rounded w-100" src="{{photo.image.url}}" alt="" />
           <div class="portfolio-btn bg-primary d-flex align-items-center justify-content-center">
             <a href="{% static 'assets/img/portfolio-1.jpg' %}" data-lightbox="portfolio"><i class="fa fa-plus text-white" style="font-size: 60px;"></i></a>
           </div>
         </div>
       </div>
-      <div class="col-lg-4 col-md-6 mb-4 portfolio-item second">
+      {% endfor %}
+      {% comment %} <div class="col-lg-4 col-md-6 mb-4 portfolio-item second">
         <div class="position-relative overflow-hidden mb-2">
           <img class="img-fluid rounded w-100" src="{% static 'assets/img/portfolio-2.jpg' %}" alt="" />
           <div class="portfolio-btn bg-primary d-flex align-items-center justify-content-center">
@@ -63,7 +68,7 @@
             <a href="{% static 'assets/img/portfolio-6.jpg' %}" data-lightbox="portfolio"><i class="fa fa-plus text-white" style="font-size: 60px;"></i></a>
           </div>
         </div>
-      </div>
+      </div> {% endcomment %}
     </div>
   </div>
 </div>
